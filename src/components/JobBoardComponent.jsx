@@ -1,7 +1,6 @@
 import React from "react";
 
-const JobBoardComponent = ({ job }) => {
-
+const JobBoardComponent = ({ job, handleTagClick }) => {
   const tags = [job.role, job.level];
   if (job.tools) {
     tags.push(...job.tools);
@@ -14,11 +13,11 @@ const JobBoardComponent = ({ job }) => {
     <div
       className={`flex flex-col bg-white shadow-md my-16 mx-10 p-6 rounded ${
         job.featured && "border-l-4 border-teal-500 border-solid"
-      } md:flex-row`}
+      } lg:flex-row lg:my-8`}
     >
       <div>
         <img
-          className="-mt-16 mb-4 w-20 h-20 sm:h-24 sm:w-24 sm:my-0"
+          className="-mt-16 mb-4 w-20 h-20 lg:h-24 lg:w-24 lg:my-0"
           src={job.logo}
           alt={job.company}
         />
@@ -42,10 +41,13 @@ const JobBoardComponent = ({ job }) => {
           {job.postedAt} · {job.contract} · {job.location}
         </p>
       </div>
-      <div className="flex flex-wrap items-center mt-4 mx-4 pt-4 border-t border-gray-200 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0">
+      <div className="flex flex-wrap items-center mt-4 mx-4 pt-4 border-t border-gray-200 border-solid lg:ml-auto lg:border-0 lg:pt-0 lg:mt-0">
         {tags
           ? tags.map((tag) => (
-              <span className="text-sm text-teal-500 bg-teal-100 font-bold mr-4 mb-4 p-1 rounded sm:mb-0">
+              <span
+                onClick={() => handleTagClick(tag)}
+                className="cursor-pointer text-teal-500 bg-teal-100 font-bold mr-4 mb-4 p-2 rounded lg:mb-0"
+              >
                 {tag}
               </span>
             ))
